@@ -1,7 +1,5 @@
 # Teams Project for Revature
 
-Two Teams of 4, One Team of 5
-
 ## Overview
 
 The goal of this project, is to repeat the Capstone, with reduced requirements, practicing the same experience but working together as a team on the system. This will be to keep material fresh and work on collaboration. Interviews are happening this week, which take priority, but try to split time accordingly. Presentations will happen Friday November 3rd, after lunch.
@@ -26,3 +24,18 @@ Generate a Block Diagram of all ECU systems, along with their associated sensors
 ### Module Design and Simulation (Simulink)
 
 Model the system in simulink based on all the prior material to begin simulating the system to test components are working as expected.
+
+# Building the Project
+To build pdfs from the markdown files, one can type the following:
+
+```sh
+./build.sh pandock -s doc/conops.md -o dist/conops.pdf
+```
+
+The mermaid diagrams are pretty similar:
+
+```sh
+./build.sh mermaid -i diagrams/block_diagram.mmd -o dist/block_diagram.png
+```
+
+The build script at this point is pretty primitive, but it gets the job done.
