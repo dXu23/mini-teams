@@ -1,0 +1,79 @@
+digraph G {
+  node [shape=box]
+  A[ label="Engine Control Module" pos="10,7!" ]
+  B[ label="Transmission Control Module" pos="4,7!" ]
+  C[ label="Brake\nControl\nModule" pos="15,3!" ]
+  D[ label="Body\nControl\nModule" pos="8,5!" ]
+  E[ label="Instrument Cluster" pos="15,7!"]
+  F[ label="Parking\nAssistance\nECU" pos="12,5!" ]
+  G[ label="Door\nControl\nModule" pos="3,5!" ]
+  H[ label="Wiper Control Module" pos="4,3!" ]
+
+  // ECM -> BCM
+  A -> D [ label="RPM of Crankshaft" penwidth=2 ]
+
+  // Parking Assistance ECU <-> ECM
+  F -> A [ label="Reduce Speed/Power" penwidth=2 ]
+  A -> F [ label="Brake Switch" penwidth=2 ]
+
+  // BCM <-> Door Control Module
+  D -> G [ label="Lock Doors Request" penwidth=2 ]
+  G -> D [ label="Door Locks State" penwidth=2 ]
+
+  // BCM <-> Wiper Control Module
+  D -> H [ penwidth=2 ]
+
+  // Parking Assistance ECU <-> Instrument Cluster
+  E -> F [ label="User Input" penwidth=2 ]
+  F -> E [ label="Alert" penwidth=2 ]
+
+  // Parking Assistance ECU <-> Brake Control Module
+  F -> C [ label="Decelerate Brakes" penwidth=2 ]
+  C -> F [ label="Vehicle Speed" penwidth=2 ]
+
+  // Transmission control Module <-> Body Control Module
+  B -> D [ label="Transmission Position" penwidth=2 ]
+
+  // Parking Assistance ECU
+  I [ label="Ultrasonic Sensor" pos="9,3!"]
+  I -> F
+
+
+  // Engine Control Module
+  J [ label="Brake Switch" pos="8,9!" ]
+  P [ label="Mass Air Flow Sensor" pos="10,9!" ]
+  Q [ label="Engine Coolant Sensor" pos="12,9!" ]
+  J -> A
+  P -> A
+  Q -> A
+
+  // Brake Control Module
+  K [ label="Brake Actuator" pos="18,1!" ]
+  L [ label="Brake Lights" pos="20,3!"]
+  M [ label="Pressure Sensor" pos="18,5!"]
+  K -> C [ label="Brake Actuator Command" ]
+  C -> K [ label="Wheel Speed" ]
+  C -> L [ label="Brake Lights Command" ]
+  M -> C [ label="Brake Pressure" ]
+
+  // Instrument Cluster
+  N [ label="Warning Light" pos="18,9!" ]
+  R [ label="Speedometer" pos="19,7!" ]
+  E -> N [ label="Obstacle Detected" ]
+  R -> E
+
+
+  // Transmission Control Module
+  O [ label="Vehicle Speed Sensor" pos="4,9!" ]
+  S [ label="Transmission Position Sensor" pos="-1,7!" ]
+  O -> B
+  S -> B
+
+  // Door Control Module
+  T [ label="Door Lock Actuators" ]
+  G -> T [ label="Lock Doors Command" ]
+
+  // Wiper Control Module
+  U [ label="Windshield Wipers" pos="4,1!" ]
+  H -> U
+}
