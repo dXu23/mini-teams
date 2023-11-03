@@ -1,19 +1,19 @@
 digraph G {
   node [shape=box]
-  A[ label="Engine Control Module" pos="10,7!" ]
-  B[ label="Transmission Control Module" pos="4,7!" ]
+  A[ label="Engine\nControl\nModule" pos="10,7!" ]
+  B[ label="Transmission\nControl\nModule" pos="4,7!" ]
   C[ label="Brake\nControl\nModule" pos="15,3!" ]
   D[ label="Body\nControl\nModule" pos="8,5!" ]
   E[ label="Instrument Cluster" pos="15,7!"]
   F[ label="Parking\nAssistance\nECU" pos="12,5!" ]
   G[ label="Door\nControl\nModule" pos="3,5!" ]
-  H[ label="Wiper Control Module" pos="4,3!" ]
+  H[ label="Wiper\nControl\nModule" pos="4,3!" ]
 
   // ECM -> BCM
   A -> D [ label="RPM of Crankshaft" penwidth=2 ]
 
   // Parking Assistance ECU <-> ECM
-  F -> A [ label="Reduce Speed/Power" penwidth=2 ]
+  F -> A [ label="Reduce\nSpeed/Power" penwidth=2 ]
   A -> F [ label="Brake Switch" penwidth=2 ]
 
   // BCM <-> Door Control Module
@@ -21,7 +21,7 @@ digraph G {
   G -> D [ label="Door Locks State" penwidth=2 ]
 
   // BCM <-> Wiper Control Module
-  D -> H [ penwidth=2 ]
+  D -> H [ label="Pivot Wipers Request" penwidth=2 ]
 
   // Parking Assistance ECU <-> Instrument Cluster
   E -> F [ label="User Input" penwidth=2 ]
@@ -36,7 +36,7 @@ digraph G {
 
   // Parking Assistance ECU
   I [ label="Ultrasonic Sensor" pos="9,3!"]
-  I -> F
+  I -> F [ label="Distance" ]
 
 
   // Engine Control Module
@@ -51,9 +51,9 @@ digraph G {
   K [ label="Brake Actuator" pos="18,1!" ]
   L [ label="Brake Lights" pos="20,3!"]
   M [ label="Pressure Sensor" pos="18,5!"]
-  K -> C [ label="Brake Actuator Command" ]
+  K -> C [ label="Brake Actuator\nCommand" ]
   C -> K [ label="Wheel Speed" ]
-  C -> L [ label="Brake Lights Command" ]
+  C -> L [ label="Brake Lights\nCommand" ]
   M -> C [ label="Brake Pressure" ]
 
   // Instrument Cluster
@@ -61,7 +61,6 @@ digraph G {
   R [ label="Speedometer" pos="19,7!" ]
   E -> N [ label="Obstacle Detected" ]
   R -> E
-
 
   // Transmission Control Module
   O [ label="Vehicle Speed Sensor" pos="4,9!" ]
@@ -75,5 +74,5 @@ digraph G {
 
   // Wiper Control Module
   U [ label="Windshield Wipers" pos="4,1!" ]
-  H -> U
+  H -> U [ label="Pivot Wipers Command" ]
 }
